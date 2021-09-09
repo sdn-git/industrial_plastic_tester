@@ -1,0 +1,8 @@
+LEDPause_Flashing:
+
+lds	  xtmp,S_FlagButt1				;Это есть обработка паузы. Когда м нажимаем кнопку S_PauseButt инкремен
+sbrs  xtmp,f_PauseSetted		        ;кнопка еще не нажималась.А пауза включена?
+rjmp  NoFlashing
+sbi	ControlPort,LED1
+NoFlashing:
+ret

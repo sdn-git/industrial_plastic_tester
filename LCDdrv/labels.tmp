@@ -1,0 +1,38 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.1.9</VERSION>
+ <DEVICE>ATmega8</DEVICE>
+ <WORKING_DIR>E:\Projects\Fastex Checker\LCDdrv</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>E:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes</DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>E:\Program Files\Atmel\AVR Tools\AvrAssembler2\Appnotes\m8def.inc</FILE>
+  <FILE>E:\Projects\Fastex Checker\LCDdrv\MACRO.ASM</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.map</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <LCD_INIT><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>160</LINE></LCD_INIT>
+  <main><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>29</LINE></main>
+  <LCD_DRV><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>81</LINE></LCD_DRV>
+  <PAUSE_32mS><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>43</LINE></PAUSE_32mS>
+  <cycle1><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>48</LINE></cycle1>
+  <EXIT_PAUSE><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>56</LINE></EXIT_PAUSE>
+  <cycle2><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>52</LINE></cycle2>
+  <D_LCDDRV><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>111</LINE></D_LCDDRV>
+  <DRV_DELAY><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>131</LINE></DRV_DELAY>
+  <PAUSE1><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>105</LINE></PAUSE1>
+  <R_LCDDRV><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>125</LINE></R_LCDDRV>
+  <DRV_DELAY0><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>137</LINE></DRV_DELAY0>
+  <DRV_DELAY1><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>139</LINE></DRV_DELAY1>
+  <DRV_DELAY_RET><FILE>E:\Projects\Fastex Checker\LCDdrv\LCDdrv.asm</FILE><LINE>148</LINE></DRV_DELAY_RET>
+ </LABELS>
+</ASSEMBLER_INFO>
