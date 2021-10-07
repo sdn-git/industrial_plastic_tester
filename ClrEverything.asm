@@ -1,6 +1,6 @@
 ;///Clear all register
 ClrEverything:
-	clr xtmp
+	clr     xtmp
 	clr 	tmp2
 	clr 	CmprL
 	clr	CmprH
@@ -56,9 +56,9 @@ ClrEverything:
 	sts 	S_MotorHighPointL,tmp
 	sts 	S_MotorHighPointH,tmp2
 	ldi 	tmp,low(C_ParkingNorm)		;//Park motor to the start position
-	ldi 	tmp2, high(C_ParkingNorm)	;
-	sts 	S_ParkingNormL,tmp		;
-	sts 	S_ParkingNormH,tmp2	        ;
+	ldi 	tmp2, high(C_ParkingNorm)	
+	sts 	S_ParkingNormL,tmp		
+	sts 	S_ParkingNormH,tmp2	        
 
 
 ret
