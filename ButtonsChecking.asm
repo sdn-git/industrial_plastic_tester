@@ -39,14 +39,15 @@ EqualOne_1: ;
 /// More than one button is pushed	
 MoreButtPushed_1:
 	sbr	FlagReg,m_MoreOneButt_1         ;// The button has been processed
-	rjmp SecondGroup
-	YesButt_1:
+	rjmp    SecondGroup
+	
+YesButt_1:
 	cbr	FlagReg,m_MoreOneButt_1 
 	
 ; /// Check second buttons group: two buttons cannot be pushed simultaneously
 SecondGroup:
-	clr xtmp
-	clr tmp
+	clr     xtmp
+	clr     tmp
 	lds	XL,low(S_LK0)	;
 	lds	XH,high(S_LK0)
 	bst	XL,F_K1
@@ -73,7 +74,7 @@ SecondGroup:
  
 	cpi	xtmp,NoButtPushed
 	brne	EqualOne_2
-	rjmp YesButt_2
+	rjmp    YesButt_2
 	
 /// One button is pushed		
 EqualOne_2:
@@ -88,5 +89,5 @@ MoreButtPushed_2:
 	
 YesButt_2:
 	cbr	FlagReg,m_MoreOneButt_2
-    ProcessPassed:
+ProcessPassed:
 ret
