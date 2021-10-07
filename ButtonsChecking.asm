@@ -79,13 +79,13 @@ SecondGroup:
 /// One button is pushed		
 EqualOne_2:
 	cpi	xtmp,OneButtPushed
-	brne MoreButtPushed_2
-	rjmp YesButt_2
+	brne    MoreButtPushed_2
+	rjmp    YesButt_2
 
 /// More than one button is pushed
 MoreButtPushed_2:
 	sbr	FlagReg,m_MoreOneButt_2
-	rjmp ProcessPassed
+	rjmp    ProcessPassed
 	
 YesButt_2:
 	cbr	FlagReg,m_MoreOneButt_2
