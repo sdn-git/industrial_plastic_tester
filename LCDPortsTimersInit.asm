@@ -1,10 +1,11 @@
- LCDPortsTimersInit:
+;/// Init MCU ports for the LCD control
+LCDPortsTimersInit:
 
-	ldi tmp,0b00000000;Порт В - вход.При модернизации с включением обратить
-	out DDRB,tmp	  ;RS-232 следует внимание на установку флагов(!!!)
+	ldi tmp,0b00000000;
+	out DDRB,tmp	  ;
 	ldi tmp,0b00000011
 	out	PORTB,tmp
-;Порты A, C, D - выходы.
+
 	ldi tmp,0b11111111
 	out DDRA,tmp
 	ldi tmp,0b00000000
@@ -19,39 +20,31 @@
 	out DDRD,tmp
 	ldi	tmp,0b00000000	
 	out	PORTD,tmp
-
-   ;WatchDog Initialization
-   ;_________________________________
-	ldi	tmp,6 			
-   ;out	WDTCR,tmp 		
+	
+;///WatchDog Initialization
+	ldi	tmp,6 				
 	wdr
-;	cli          
-   ;T0 Initialization
+	cli          
    
+;///Timer0 initialization
 T0:
-	ldi	tmp,0x45		;Load constant in registr tmp (r16)
-	out	TIMSK,tmp		;Allow interrupt processing
-	ldi	tmp,0b00000011		;Load constant in registr tmp (r16).Constant before is deleting<!!>
-	out	TCCR0,tmp		;T0 frequency equal signal microcontroller
+	ldi	tmp,0x45		
+	out	TIMSK,tmp		
+	ldi	tmp,0b00000011		
+	out	TCCR0,tmp		
 	wdr
-	;
 
-	;Инициализация таймера Т1
-;________________________________________
+;///Timer1 initialization
 T1:
 	ldi	tmp,0b00000001
 	out	TCCR1B,tmp
 	
-;T2 Initialization
-;___________________________________1	
+;///Timer2  Initialization
 T2:	
 	ldi	tmp,0b00000111		
 	out	TCCR2,tmp	
-/*
 	
-Это все нужно для вывод информации на ЖКД
-
-;Segment Display Initialization     				;Инициализация
+;/// SSegment Display Initialization     				
    Pause100ms
 	Bitset1:
 		Set_Command_LCD	HD44780_FunctionSet0
@@ -69,8 +62,7 @@ T2:
 Pause100us
 		ret   
 		 
-Write_AddrLCD:; TMP - ADDRESS						;Запись адреса
-	;ADDRESS
+Write_AddrLCD:						
 	cbi	ControlPort,RSPort
 	Pause100us
 	sbi	ControlPort,EPort
@@ -78,11 +70,10 @@ Write_AddrLCD:; TMP - ADDRESS						;Запись адреса
 	out	DataPort,tmp
 	Pause100us
 	cbi	ControlPort,EPort
-    Pause100us
+        Pause100us
 	ret
 
-Write_DataLCD:; TMP - DATA							;Запись данных												
-	;DATA
+Write_DataLCD:																		
 	sbi	ControlPort,RSPort
 	Pause100us
 	sbi	ControlPort,EPort
@@ -90,7 +81,6 @@ Write_DataLCD:; TMP - DATA							;Запись данных
 	out	DataPort,tmp
 	Pause100us
 	cbi	ControlPort,EPort
-    Pause100us*/
-	;
-	ret
+        Pause100us
+ret
 	
