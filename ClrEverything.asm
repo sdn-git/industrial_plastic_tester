@@ -1,6 +1,6 @@
 ;///Clear all register
 ClrEverything:
-	clr 	xtmp
+	clr xtmp
 	clr 	tmp2
 	clr 	CmprL
 	clr	CmprH
