@@ -1,8 +1,0 @@
-;/// Some LED flashing procedures
-LEDPause_Flashing:
-      lds	xtmp,S_FlagButt1				
-      sbrs  xtmp,f_PauseSetted		 
-      rjmp  NoFlashing
-      sbi	ControlPort,LED1
-NoFlashing:
-ret
