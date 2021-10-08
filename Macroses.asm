@@ -1,7 +1,6 @@
 
 Macrosses:
 
-
 .macro PauseDec255
 Pause255clc:
 	dec	XTMP
