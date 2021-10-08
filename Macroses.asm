@@ -21,7 +21,7 @@ Pause255clc:
 	rcall	Write_AddrLCD
 .endmacro
 
-.macro Pause100ms; ïðîãðàììà çàäåðæêè íà 100 ìÑ
+.macro Pause100ms; 
 #warning "added"
 cli
 	push tmp
