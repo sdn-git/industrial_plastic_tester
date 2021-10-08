@@ -8,8 +8,6 @@ Pause255clc:
 	brne Pause255clc
 .endmacro
 
-
-
 .macro SHOW_onLCD; syntax: SHOW_onLCD address,data
 	ldi	TMP,@0
 	sbr	TMP,0b10000000
@@ -23,7 +21,7 @@ Pause255clc:
 	rcall	Write_AddrLCD
 .endmacro
 
-.macro Pause100ms; программа задержки на 100 мС
+.macro Pause100ms; ГЇГ°Г®ГЈГ°Г Г¬Г¬Г  Г§Г Г¤ГҐГ°Г¦ГЄГЁ Г­Г  100 Г¬Г‘
 #warning "added"
 cli
 	push tmp
@@ -241,79 +239,79 @@ sei
          sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   S_ROL           ;Вращение влево  SRAM байта
+.macro   S_ROL          
          lds     TMP,@0  ;Syntax S_ROL SRAM_address
          rol     TMP
          sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   S_ROR           ;Вращение вправо  SRAM байта
+.macro   S_ROR          
          lds     TMP,@0  ;Syntax S_ROR SRAM_address
          ror     TMP
          sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   S_LSL           ;Сдвиг влево  SRAM байта
+.macro   S_LSL           
          lds     TMP,@0  ;Syntax S_LSL SRAM_address
          lsl     TMP
          sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   S_LSR           ;Сдвиг вправо  SRAM байта
+.macro   S_LSR           
          lds     TMP,@0  ;Syntax S_LSR SRAM_address
          lsr     TMP
          sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro  LSL_X  ;-- Логический 16-ти разрядный сдвиг влево.
+.macro  LSL_X  
   lsl  XL
   rol  XH
 .endmacro
 ;----------------------------------------------------------------------------
-.macro  LSR_X  ;-- Логический 16-ти разрядный сдвиг вправо.
+.macro  LSR_X  
   lsr  XH
   ror  XL
 .endmacro
 ;-------------------------------------------------------------------------
-.macro  LSL_Y  ;-- Логический 16-ти разрядный сдвиг влево.
+.macro  LSL_Y 
   lsl  YL
   rol  YH
 .endmacro
 ;----------------------------------------------------------------------------
-.macro  LSR_Y  ;-- Логический 16-ти разрядный сдвиг вправо.
+.macro  LSR_Y  
   lsr  YH
   ror  YL
 .endmacro
 ;-------------------------------------------------------------------------
-.macro  LSL_Z  ;-- Логический 16-ти разрядный сдвиг влево.
+.macro  LSL_Z  
   lsl  ZL
   rol  ZH
 .endmacro
 ;----------------------------------------------------------------------------
-.macro  LSR_Z  ;-- Логический 16-ти разрядный сдвиг вправо.
+.macro  LSR_Z  
   lsr  ZH
   ror  ZL
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   S_SBR           ;Установка бита в SRAM ячейке
+.macro   S_SBR           
          lds     TMP,@0  ;Syntax S_SBR SRAM_address,MASK
          sbr     TMP,@1
          sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro	S_CBR           ;Сброс бита в SRAM ячейке
+.macro	S_CBR          
 	lds     TMP,@0  ;Syntax S_SBR SRAM_address,MASK
 	cbr     TMP,@1
 	sts     @0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro	CBR_		;CBR для младших регистров.
+.macro	CBR_		
 	mov	TMP,@0	;Syntax CBR_ reg,bit
 	cbr	TMP,@1
 	mov 	@0,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro	SBR_		;SBR для младших регистров.
+.macro	SBR_		
 	mov	TMP,@0	;Syntax SBR_ reg,bit
 	sbr	TMP,@1
 	mov 	@0,TMP
@@ -346,17 +344,17 @@ sei
          out     MCUCR,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   PUSH_PSW        ;Сохранение PSW в стеке.
+.macro   PUSH_PSW        
          in      TMP,SREG
          push    TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro   POP_PSW        ;Извлечение PSW из стека.
+.macro   POP_PSW        
          pop     TMP
          out     SREG,TMP
 .endmacro
 ;-------------------------------------------------------------------------
-.macro  PUSH_ALL	;Сохранение X,Y,Z,TMP,XTMP,SREG
+.macro  PUSH_ALL	
   push tmp3
   push tmp2
   push  XL
@@ -417,43 +415,37 @@ sei
   pop  ZL
 .endmacro
 ;-------------------------------------------------------------------------
-.macro  PUSH_MATH			;Сохранение регистров матподпрограмм
-	push	DIV32_3			;Результат 32 битного деления.
-	push	DIV32_2			;  .                 .                  .
-	push	DIV32_1			;  .                 .                  .
-	push	DIV32_0			;  .                 .                  .
-	push	OPHI_RES1L		;  OPHI_RES1x  - 32 битный результат (ст.разряды).
-	push	OPHI_RES1H		;      (регистры RES используются и как регистры для передачи
-							;	32 битного операнда - расположение байт как в 32
-							;	битном результате)
-	push	OP1L			;Регистры математических П/П
-	push	OP1H			;  OP1  - 16 битный операнд.
-	push	OP2L_RES0L		;  OP2_RES0- 16/32 битный операнд/32 битный
-	push	OP2H_RES0H		;      результат (мл.разряды).
-	push	COUNTER			;  COUNTER  - счётчик циклов мат. П/П.
+.macro  PUSH_MATH			
+	push	DIV32_3			
+	push	DIV32_2			;  
+	push	DIV32_1			;  
+	push	DIV32_0			; 
+	push	OPHI_RES1L		;  
+	push	OPHI_RES1H		;      
+	push	OP1L			
+	push	OP1H			;  
+	push	OP2L_RES0L		;  
+	push	OP2H_RES0H		; 
+	push	COUNTER			; 
 .endmacro
 ;-------------------------------------------------------------------------
-.macro  POP_MATH			;Восстановление регистров матподпрограмм
-	pop		COUNTER			;  COUNTER  - счётчик циклов мат. П/П.
-	pop		OP2H_RES0H		;  OP2_RES0- 16/32 битный операнд/32 битный
-	pop		OP2L_RES0L		;      результат (мл.разряды).
-	pop		OP1H			;Регистры математических П/П
-	pop		OP1L			;  OP1  - 16 битный операнд.
-	pop		OPHI_RES1H		;  OPHI_RES1x  - 32 битный результат (ст.разряды).
-	pop		OPHI_RES1L		;      (регистры RES используются и как регистры для передачи
-							;	32 битного операнда - расположение байт как в 32
-							;	битном результате)
-	pop		DIV32_0			;Результат 32 битного деления.
-	pop		DIV32_1			;  .                 .                  .
-	pop		DIV32_2			;  .                 .                  .
-	pop		DIV32_3			;  .                 .                  .
+.macro  POP_MATH			
+	pop		COUNTER			
+	pop		OP2H_RES0H		
+	pop		OP2L_RES0L		
+	pop		OP1H			
+	pop		OP1L			
+	pop		OPHI_RES1H		
+	pop		OPHI_RES1L		   
+	pop		DIV32_0			
+	pop		DIV32_1			
+	pop		DIV32_2			
+	pop		DIV32_3			
 .endmacro
 
 ;------------------- MARKERS !!! -----------------------------------------------
 
-.macro	MARKER_FLASH	;(C) VK 24/VII.06
-			;Переключение ноги контроллера - FLASH индикатор.
-			;Синтаксис: MARKER_FLASH PINx,PORTx,PIN (где PIN=0..7, x=A..F).
+.macro	MARKER_FLASH
 	sbic	@0,@2 	
 	rjmp	MF_RESET_PIN
 	sbi	@1,@2         
@@ -464,9 +456,7 @@ MF_RESET_PIN:
 MF_EXIT:
 .endmacro
 ;----------------------------------
-.macro	MARKER_NEEDLE	;(C) VK 24/VII.06
-			;Формирователь строб-иголки (инверсной по отношению к текущему уровню).
-			;Синтаксис: MARKER_NEEDLE PINx,PORTx,PIN (где PIN=0..7, x=A..F).
+.macro	MARKER_NEEDLE
 	push	TMP
 	ldi	TMP,5
 	sbic	@0,@2 		
@@ -485,9 +475,7 @@ MN_Pause2:dec	TMP
 MN_EXIT:pop	TMP
 .endmacro
 ;----------------------------------
-.macro	MARKER_nanoNEEDLE	;(C) VK 24/VII.06
-			;Формирователь очень тонкой строб-иголки (инверсной по отношению к текущему уровню).
-			;Синтаксис: MARKER_NEEDLE PINx,PORTx,PIN (где PIN=0..7, x=A..F).
+.macro	MARKER_nanoNEEDLE
 	push	TMP
 	ldi	TMP,5
 	sbic	@0,@2 		
@@ -502,9 +490,7 @@ MnN_inverseNeedle:
 MnN_EXIT:pop	TMP
 .endmacro
 ;-----------------------------------------------------------------------------
-.macro	MARKER_PULSE	;(C) VK 24/VII.06
-			;Формирователь строб-импульса (инверсного по отношению к текущему уровню).
-			;Синтаксис: MARKER_PULSE PINx,PORTx,PIN (где PIN=0..7, x=A..F).
+.macro	MARKER_PULSE	
 	push	TMP
 	ser	TMP
 	sbic	@0,@2 		
@@ -523,89 +509,76 @@ MP_Pause2:dec	TMP
 MP_EXIT:pop	TMP
 .endmacro
 ;-----------------------------------------------------------------------------
-.macro	DEBUG_PAUSE	;(C) VK 24/VII.06
-			;Формирователь паузы (аргумент - количество прокрутки внутренных циклов).
-			;Синтаксис: DEBUG_PAUSE 0..65535
+.macro	DEBUG_PAUSE	
 	push	TMP
-	;
 	ldi	TMP,high(@0)
 	push	TMP
 	ldi	TMP,low(@0)
 DP_Cycle:
-	;--------------\
-	;----------\
-	push	TMP	;6 тактов
-	pop	TMP	;
+	push	TMP	
+	pop	TMP	
 	dec	TMP
 	brne	DP_Cycle
-	;----------/
 	pop	TMP
 	dec	TMP
 	push	TMP
 	cpi	TMP,0xff
 	breq	DP_Exit
 	rjmp	DP_Cycle
-	;--------------/
 DP_Exit:pop	TMP
-	;
 	pop	TMP
 .endmacro
 ;-----------------------------------------------------------------------------
 
-.macro	SAVE_and_MASKING_ALLinterrupts	;Сохранив управляющие регистры в стеке
-					;  записываем в них их же значение, (в
-					;  итоге, разряды с "1" - сбросятся.
-;N.B. !!! ДАННЫЙ МАКРОС ИСПОЛНЯЕТСЯ ВСЕГДА СОВМЕСТНО (ДО) С МАКРОСОМ "RESTORE_ALLinterrupts".
-
-	in	TMP,ADCSRA	;АЦП
+.macro	SAVE_and_MASKING_ALLinterrupts	
+	in	TMP,ADCSRA	
 	push	TMP
 	clr	TMP
 	out	ADCSRA,TMP
 	;
-	in	TMP,ACSR	;Компаратор
+	in	TMP,ACSR	
 	push	TMP
 	clr	TMP
 	out	ACSR,TMP
 	;
-	in	TMP,SPMCSR	;FLASH
+	in	TMP,SPMCSR	
 	push	TMP
 	clr	TMP
 	out	SPMCSR,TMP
 	;
-	in	TMP,EECR	;EEPROM
+	in	TMP,EECR	
 	push	TMP
 	clr	TMP
 	out	EECR,TMP
 	;
-	in	TMP,GICR	;Внешние прерывания
+	in	TMP,GICR	
 	push	TMP
 	clr	TMP
 	out	GICR,TMP
 	;
-	in	TMP,SPCR	;SPI
+	in	TMP,SPCR	
 	push	TMP
 	clr	TMP
 	out	SPCR,TMP
 	;
-	in	TMP,TIMSK	;Таймера
+	in	TMP,TIMSK	
 	push	TMP
 	clr	TMP
 	out	TIMSK,TMP
 	;
-	in	TMP,TWCR	;TWI
+	in	TMP,TWCR	
 	push	TMP
 	clr	TMP
 	out	TWCR,TMP
 	;
-	in	TMP,UCSRB	;UART
+	in	TMP,UCSRB	
 	push	TMP
 	clr	TMP
 	out	UCSRB,TMP
 	;
 .endmacro
 ;--------------------
-.macro	RESTORE_ALLinterrupts	;Восстанавливаем из стека контрольные регистры.
-;N.B. !!! ДАННЫЙ МАКРОС ИСПОЛНЯЕТСЯ ВСЕГДА СОВМЕСТНО (ПОСЛЕ) С МАКРОСОМ "SAVE_and_MASKING_ALLinterrupts".
+.macro	RESTORE_ALLinterrupts
 	pop	TMP
 	out	UCSRB,TMP	;UART
 	;
@@ -613,13 +586,13 @@ DP_Exit:pop	TMP
 	out	TWCR,TMP	;TWI
 	;
 	pop	TMP
-	out	TIMSK,TMP	;Таймера
+	out	TIMSK,TMP	;
 	;
 	pop	TMP
 	out	SPCR,TMP	;SPI
 	;
 	pop	TMP
-	out	GICR,TMP	;Внешние прерывания
+	out	GICR,TMP	;
 	;
 	pop	TMP
 	out	EECR,TMP	;EEPROM
@@ -628,10 +601,10 @@ DP_Exit:pop	TMP
 	out	SPMCSR,TMP	;FLASH
 	;
 	pop	TMP
-	out	ACSR,TMP	;Компаратор
+	out	ACSR,TMP	;
 	;
 	pop	TMP
-	out	ADCSRA,TMP	;АЦП
+	out	ADCSRA,TMP	;
 	;
 .endmacro
 
